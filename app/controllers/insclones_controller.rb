@@ -19,13 +19,19 @@ class InsclonesController < ApplicationController
   def create
     @insclone = Insclone.create(insclone_params)
 
-    if @insclone.save
-      #登録に成功した場合、一覧画面に遷移し、投稿した旨のメッセージを表示
-      redirect_to insclones_path, notice: "投稿しました。"
-    else
-      #登録に失敗した場合、入力フォームを再描画します。
-      #create.htmlは存在しないので、new.htmlを呼び出す。
+    if params[:back]
+      #確認画面で戻るを押下した場合、入力フォームを再描画します。
       render :new
+
+    else
+      if @insclone.save
+        #登録に成功した場合、一覧画面に遷移し、投稿した旨のメッセージを表示
+        redirect_to insclones_path, notice: "投稿しました。"
+      else
+        #登録に失敗した場合、入力フォームを再描画します。
+        #create.htmlは存在しないので、new.htmlを呼び出す。
+        render :new
+      end
     end
 
   end
@@ -58,6 +64,14 @@ class InsclonesController < ApplicationController
     #一覧画面に遷移し、削除した旨のメッセージを表示
     redirect_to insclones_path, notice: "投稿削除完了"
 
+  end
+
+  #確認
+  def confirm
+    @insclone = Insclone.new(insclone_params)
+
+    #確認画面に移る前に、手動でバリデーションを発生させて、失敗した場合は投稿画面に戻る
+    render :new if @insclone.invalid?
   end
 
   private
