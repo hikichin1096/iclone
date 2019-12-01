@@ -33,6 +33,24 @@ class InsclonesController < ApplicationController
     @insclone = Insclone.find(params[:id])
   end
 
+  #編集
+  def edit
+    #指定idのパラメータ取得
+    @insclone = Insclone.find(params[:id])
+  end
+
+  #更新
+  def update
+    @insclone = Insclone.find(params[:id])
+    if @insclone.update(insclone_params)
+      #編集に成功した場合、一覧画面に遷移し、編集した旨のメッセージを表示
+      redirect_to insclones_path, notice: "投稿編集完了"
+    else
+      #編集に失敗した場合、編集フォームを再描画します。
+      render :edit
+    end
+  end
+
   private
 
   #ストロングパラメータ
