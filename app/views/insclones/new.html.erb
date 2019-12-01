@@ -1,0 +1,8 @@
+<%= form_with(model: Insclone.new) do |form| %>
+  <div class = "InsContent">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>
+<%= link_to '一覧画面にもどる', insclones_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  get 'insclones/index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #自動でRESTfulなルート定義の生成
+  resources :insclones
+  
 end

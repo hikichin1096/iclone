@@ -1,2 +1,16 @@
-<h1>Insclones#index</h1>
-<p>Find me in app/views/insclones/index.html.erb</p>
+<h1>一覧</h1>
+
+<%= link_to '新規投稿', new_insclone_path %>
+
+<table>
+  <tr>
+    <th>内容</th>
+    <th>更新日時</th>
+  </tr>
+  <% @insclones.each do |insclone| %>
+    <tr>
+      <td><%= insclone.content %></td>
+      <td><%= insclone.updated_at %></td>
+    </tr>
+  <% end %>
+</table>
