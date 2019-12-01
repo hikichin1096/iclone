@@ -16,8 +16,15 @@ class InsclonesController < ApplicationController
   def create
     @insclone = Insclone.create(insclone_params)
 
-    #新規画面に移動
-    redirect_to new_insclone_path
+    if @insclone.save
+      #登録に成功した場合、一覧画面に遷移し、投稿した旨のメッセージを表示
+      redirect_to insclones_path, notice: "投稿しました。"
+    else
+      #登録に失敗した場合、入力フォームを再描画します。
+      #create.htmlは存在しないので、new.htmlを呼び出す。
+      render :new
+    end
+
   end
 
   #表示
