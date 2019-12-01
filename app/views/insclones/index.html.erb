@@ -11,6 +11,7 @@
     <tr>
       <td><%= insclone.content %></td>
       <td><%= insclone.updated_at %></td>
+      <td><%= link_to '詳細表示', insclone_path(insclone.id) %>
     </tr>
   <% end %>
 </table>
