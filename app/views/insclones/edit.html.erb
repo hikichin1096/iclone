@@ -1,22 +1,3 @@
-<%= form_with(model: @insclone, local: true) do |form| %>
+<h2>編集</h2>
 
-  <!-- エラーメッセージを画面上部に表示 -->
-  <% if @insclone.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @insclone.errors.count %>件のエラーがあります。</h2>
-      <ul>
-
-      <% @insclone.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class = "InsContent">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <%= form.submit %>
-<% end %>
-<%= link_to '一覧画面にもどる', insclones_path %>
+<%= render 'form' %>

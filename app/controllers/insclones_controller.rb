@@ -1,5 +1,8 @@
 class InsclonesController < ApplicationController
 
+  #各メソッドが実行される前に、実行（共通処理)
+  before_action :set_insclone, only:[:show, :edit, :update]
+
   #インデックスアクション
   def index
 
@@ -29,19 +32,14 @@ class InsclonesController < ApplicationController
 
   #表示
   def show
-    #指定idのパラメータ取得
-    @insclone = Insclone.find(params[:id])
   end
 
   #編集
   def edit
-    #指定idのパラメータ取得
-    @insclone = Insclone.find(params[:id])
   end
 
   #更新
   def update
-    @insclone = Insclone.find(params[:id])
     if @insclone.update(insclone_params)
       #編集に成功した場合、一覧画面に遷移し、編集した旨のメッセージを表示
       redirect_to insclones_path, notice: "投稿編集完了"
@@ -56,6 +54,11 @@ class InsclonesController < ApplicationController
   #ストロングパラメータ
   def insclone_params
     params.require(:insclone).permit(:title, :content)
+  end
+
+  #共通処理
+  def set_insclone
+    @insclone = Insclone.find(params[:id])
   end
 
 end
