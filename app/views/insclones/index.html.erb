@@ -11,8 +11,9 @@
     <tr>
       <td><%= insclone.content %></td>
       <td><%= insclone.updated_at %></td>
-      <td><%= link_to '詳細表示', insclone_path(insclone.id) %><t
-      <td><%= link_to "編集する", edit_insclone_path(insclone.id) %>
+      <td><%= link_to '詳細表示', insclone_path(insclone.id) %></td>
+      <td><%= link_to "編集する", edit_insclone_path(insclone.id) ,data: { confirm: '本当に編集していいですか？' }%></td>
+  　　 <td><%= link_to '削除する', insclone_path(insclone.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }%></td>
     </tr>
   <% end %>
 </table>

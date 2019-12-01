@@ -1,7 +1,7 @@
 class InsclonesController < ApplicationController
 
   #各メソッドが実行される前に、実行（共通処理)
-  before_action :set_insclone, only:[:show, :edit, :update]
+  before_action :set_insclone, only:[:show, :edit, :update, :destroy]
 
   #インデックスアクション
   def index
@@ -47,6 +47,17 @@ class InsclonesController < ApplicationController
       #編集に失敗した場合、編集フォームを再描画します。
       render :edit
     end
+  end
+
+  #削除
+  def destroy
+
+    #削除実行
+    @insclone.destroy
+
+    #一覧画面に遷移し、削除した旨のメッセージを表示
+    redirect_to insclones_path, notice: "投稿削除完了"
+
   end
 
   private
