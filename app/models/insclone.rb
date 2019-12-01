@@ -1,0 +1,2 @@
+class Insclone < ApplicationRecord
+end
